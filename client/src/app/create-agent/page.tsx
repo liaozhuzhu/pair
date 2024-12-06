@@ -59,7 +59,7 @@ export default function CreateAgent() {
 
     return (
         <div className="flex min-h-screen w-full justify-center items-center mt-16">
-            <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border ">
+            <div className="max-w-4xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border ">
                 <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
                     Create an Interview Agent
                 </h2>
