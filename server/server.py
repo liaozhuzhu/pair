@@ -6,5 +6,9 @@ app = Flask(__name__)
 def api():
     return "Hello from pAIr"
 
+@app.route("/api/chat")
+def chat():
+    pass
+
 if __name__ == "__main__": # so this file is not importable in other modules
     app.run()
