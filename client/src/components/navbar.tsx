@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import {Button} from '@/components/ui/button';
 
 export default function Navbar() {
     return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-border">
+    <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-border">
         <div className="flex h-14 items-center px-4">
             <div className="mr-4 hidden md:flex">
                 <Link className="mr-4 flex items-center gap-2 lg:mr-6" href="/">
@@ -21,11 +22,15 @@ export default function Navbar() {
             </button>
             <div className="flex flex-1 items-center justify-between gap-2 md:justify-end md:block hidden">
                 <div className="w-full flex justify-end gap-4">
-                    <Link href="signup" className="inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input px-4 py-2 relative h-8 justify-center rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none w-20 md:w-28">
-                        Sign Up
+                    <Link href="signup">
+                        <Button>
+                            Sign Up
+                        </Button>
                     </Link>
-                    <Link href="login" className="inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input px-4 py-2 relative h-8 justify-center rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none w-20 md:w-28">
-                        Login
+                    <Link href="login">
+                        <Button>
+                            Login
+                        </Button>
                     </Link>
                 </div>
             </div>
