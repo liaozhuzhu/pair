@@ -19,3 +19,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* For Firefox */
+* {
+  scrollbar-color: rgba(79, 79, 79, 0.5) transparent; /* Thumb and track colors */
+}
+

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
 const inter = localFont({
   src: "./fonts/Inter-VariableFont_opsz,wght.ttf",
@@ -25,13 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={`${inter.variable} ${jetBrainsMono.variable} antialiase min-h-full`}
+        className={`${inter.variable} ${jetBrainsMono.variable} antialiase min-h-full bg-black`}
       >
-        <nav className="h-20 w-full border-b-2 bg-black justify-center items-center flex fixed top-0">
-          This is the navbar
-        </nav>
+        <Navbar/>
         <div className="flex flex-col min-h-full justify-center items-center px-4">
           {children}
         </div>

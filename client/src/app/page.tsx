@@ -12,9 +12,9 @@ export default function Home() {
             </div>
             <div className="flex flex-col min-h-full justify-center items-center md:w-1/2 w-full gap-4">
                 <h1 className="text-4xl">Try it now!</h1>
-                <Link href="/create-agent" className="shadow-[0_0_2px_2px_rgba(255,255,255,1)] transition duration-300 text-white font-bold py-2 px-4 rounded hover:shadow-[0_0_10px_2px_rgba(255,255,255,1)]">
-                    Get Started
-                </Link>            
+                <Link href="create-agent" className="inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input px-4 py-2 relative h-10 justify-center rounded-[0.5rem] bg-muted/50 text-md font-normal text-muted-foreground shadow-none w-30 md:w-32">
+                    Create Agent
+                </Link>           
             </div>
         </div>
     )
