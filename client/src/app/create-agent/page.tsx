@@ -33,6 +33,7 @@ export default function CreateAgent() {
     });
 
     const [fileName, setFileName] = useState<string | null>(null);
+    const isDisabled = formData.context === "" || formData.sessionName === "";
 
     // Functions
     const handleFileUpload = () => {
@@ -70,7 +71,7 @@ export default function CreateAgent() {
                 <form className="mt-8 flex flex-col justify-center items-center gap-4" onSubmit={handleSubmit}>
                     <LabelInputContainer>
                         <Label htmlFor="session-name">Session Name</Label>
-                        <Input id="session-name" placeholder="FaGooFlix Interview" type="text" onChange={(e) => setFormData({...formData, sessionName: e.target.value})} value={formData.sessionName}/>
+                        <Input id="session-name" placeholder="FaGooFlix Interview" autoComplete="off" type="text" onChange={(e) => setFormData({...formData, sessionName: e.target.value})} value={formData.sessionName}/>
                     </LabelInputContainer>
                     <LabelInputContainer className="">
                     <Label htmlFor="type-of-interivew">Type of Interview</Label>
@@ -88,7 +89,7 @@ export default function CreateAgent() {
                     </LabelInputContainer>
                     <LabelInputContainer className="">
                         <Label htmlFor="context">Context</Label>
-                        <Textarea id="context" placeholder="I am interviewing for a Software Engineer Intern position at FaGooFlix" value={formData.context} onChange={(e) => setFormData({...formData, context: e.target.value})}/>
+                        <Textarea required id="context" placeholder="I am interviewing for a Software Engineer Intern position at FaGooFlix" value={formData.context} onChange={(e) => setFormData({...formData, context: e.target.value})}/>
                     </LabelInputContainer>
 
                     <LabelInputContainer className="mb-4">
@@ -122,11 +123,14 @@ export default function CreateAgent() {
                     <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-4 h-[1px] w-full" />
             
                     <button
-                    className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-                    type="submit"
-                    >
+                        className={`bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] ${
+                            isDisabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+                        }`}
+                        type="submit"
+                        disabled={isDisabled}
+                        >
                         Create &rarr;
-                        <BottomGradient />
+                        {!isDisabled && <BottomGradient />}
                     </button>
                 </form>
             </div>
