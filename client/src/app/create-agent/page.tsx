@@ -1,5 +1,7 @@
 "use client";
 import {useState, useEffect} from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { LabelInputContainer } from "@/components/ui/label-input-container";
@@ -25,15 +27,16 @@ export default function CreateAgent() {
         files: File[];
     }
 
+    const router = useRouter();
     const [formData, setFormData] = useState<FormData>({
         sessionName: "",
         typeOfInterview: "conversational",
         context: "",
         files: [],
     });
-
     const [fileName, setFileName] = useState<string | null>(null);
     const isDisabled = formData.context === "" || formData.sessionName === "";
+    const API = "http://127.0.0.1:5000/pairapi"; // should put this in env file
 
     // Functions
     const handleFileUpload = () => {
@@ -53,9 +56,26 @@ export default function CreateAgent() {
         setFileName(file ? file.name : null);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(formData);
+        const formDataToSend = new FormData(); // have to do formdata object to send multipart form data
+        formDataToSend.append("sessionName", formData.sessionName);
+        formDataToSend.append("typeOfInterview", formData.typeOfInterview);
+        formDataToSend.append("context", formData.context);
+
+        formData.files.forEach(file => {
+            formDataToSend.append("files", file);
+        });
+
+        try {
+            const response = await axios.post(`${API}/create-agent`, formDataToSend);
+            console.log("Generated session:", response.data);
+            router.push(`/sessions/${response.data.sessionId}`, {
+                state: { sessionName: formData.sessionName },
+            });
+        } catch (error) {
+            console.error("Error:", error);
+        }
     };
 
     return (
@@ -105,7 +125,8 @@ export default function CreateAgent() {
                             <span className={fileName ? `text-white text-sm truncate` : `text-zinc-500 text-sm`}>
                             {fileName || "Upload or Browse Files"}
                             </span>
-                            <Button type="button" className="relative z-20" onClick={handleFileUpload}>
+                            
+                            <Button type="button" className={`relative z-20 ${!fileName ? 'cursor-not-allowed opacity-50 hover:bg-white' : 'cursor-pointer'}`} onClick={handleFileUpload} aria-disabled={!fileName}>
                                 <FontAwesomeIcon icon={faArrowUp} className="fa-fw" />
                             </Button>
                         </div>
