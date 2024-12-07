@@ -70,9 +70,7 @@ export default function CreateAgent() {
         try {
             const response = await axios.post(`${API}/create-agent`, formDataToSend);
             console.log("Generated session:", response.data);
-            router.push(`/sessions/${response.data.sessionId}`, {
-                state: { sessionName: formData.sessionName },
-            });
+            router.push(`/sessions/${response.data.sessionId}`)
         } catch (error) {
             console.error("Error:", error);
         }
